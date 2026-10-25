@@ -60,13 +60,12 @@ export function SiteHeader() {
     </header>
   );
 }
-
 export function SiteFooter() {
   return (
     <footer className="border-t py-10 text-center text-sm text-muted-foreground">
       <p className="font-display text-xl text-foreground">{STORE_NAME}</p>
       <p className="mt-2">Peças feitas à mão com carinho · © {new Date().getFullYear()}</p>
-      <Link to="/admin" className="mt-4 inline-block text-xs hover:text-foreground">Área administrativa</Link>
     </footer>
   );
 }
+
