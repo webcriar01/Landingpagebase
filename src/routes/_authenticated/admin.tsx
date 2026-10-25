@@ -54,7 +54,7 @@ function Admin() {
   async function del(id: string) {
     if (!confirm("Excluir este produto?")) return;
     const { error } = await supabase.from("products").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) return void toast.error(error.message);
     toast.success("Produto excluído");
     refresh();
   }
@@ -105,13 +105,13 @@ function Categories({ cats, onChange }: { cats: { id: string; name: string }[]; 
   async function add(e: React.FormEvent) {
     e.preventDefault();
     const { error } = await supabase.from("categories").insert({ name, slug: slugify(name) });
-    if (error) return toast.error(error.message);
+    if (error) return void toast.error(error.message);
     setName(""); onChange();
   }
   async function del(id: string) {
     if (!confirm("Excluir categoria?")) return;
     const { error } = await supabase.from("categories").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) return void toast.error(error.message);
     onChange();
   }
   return (
@@ -139,14 +139,14 @@ function ProductForm({ initial, cats, onClose, onSaved }: { initial: Partial<Pro
     try {
       const urls = await Promise.all(files.map(uploadImage));
       if (extra) set("additional_images", [...(f.additional_images ?? []), ...urls]);
-      else set("main_image_url", urls[0]);
+      else set("main_image_url", urls[0] ?? null);
     } catch (err) { toast.error((err as Error).message); }
     setBusy(false);
   }
 
   async function save(e: React.FormEvent) {
     e.preventDefault();
-    if (f.is_on_sale && f.promotional_price == null) return toast.error("Informe o preço promocional.");
+    if (f.is_on_sale && f.promotional_price == null) return void toast.error("Informe o preço promocional.");
     setBusy(true);
     const payload = {
       name: f.name!, description: f.description ?? null, price: Number(f.price),
@@ -159,7 +159,7 @@ function ProductForm({ initial, cats, onClose, onSaved }: { initial: Partial<Pro
       ? await supabase.from("products").update(payload).eq("id", f.id)
       : await supabase.from("products").insert(payload);
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) return void toast.error(error.message);
     toast.success("Produto salvo");
     onSaved();
   }
