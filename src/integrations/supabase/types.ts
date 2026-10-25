@@ -14,7 +14,86 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      categories: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          slug: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          slug: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          slug?: string
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          additional_images: string[] | null
+          category_id: string | null
+          created_at: string
+          description: string | null
+          id: string
+          is_featured: boolean | null
+          is_on_sale: boolean | null
+          is_published: boolean | null
+          main_image_url: string | null
+          name: string
+          original_price: number | null
+          price: number
+          promotional_price: number | null
+          updated_at: string
+        }
+        Insert: {
+          additional_images?: string[] | null
+          category_id?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_featured?: boolean | null
+          is_on_sale?: boolean | null
+          is_published?: boolean | null
+          main_image_url?: string | null
+          name: string
+          original_price?: number | null
+          price: number
+          promotional_price?: number | null
+          updated_at?: string
+        }
+        Update: {
+          additional_images?: string[] | null
+          category_id?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_featured?: boolean | null
+          is_on_sale?: boolean | null
+          is_published?: boolean | null
+          main_image_url?: string | null
+          name?: string
+          original_price?: number | null
+          price?: number
+          promotional_price?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "products_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
