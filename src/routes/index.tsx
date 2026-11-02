@@ -9,10 +9,23 @@ import { productsQuery, WHATSAPP_NUMBER } from "@/lib/store";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Artes e Encantos — Peças artesanais feitas à mão" },
-      { name: "description", content: "Decoração, presentes e artesanato feitos à mão. Escolha no catálogo e peça pelo WhatsApp." },
-      { property: "og:title", content: "Artes e Encantos — Peças artesanais" },
-      { property: "og:description", content: "Decoração, presentes e artesanato feitos à mão." },
+      {
+        title: "Artes e Encantos | Peças artesanais feitas à mão",
+      },
+      {
+        name: "description",
+        content:
+          "Conheça a Artes e Encantos. Peças artesanais criadas com cuidado, delicadeza e dedicação. Confira nosso catálogo.",
+      },
+      {
+        property: "og:title",
+        content: "Artes e Encantos | Encanto em cada criação",
+      },
+      {
+        property: "og:description",
+        content:
+          "Peças artesanais feitas com carinho para encantar você e tornar momentos especiais.",
+      },
     ],
   }),
   component: Index,
@@ -20,57 +33,263 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const { data = [] } = useQuery(productsQuery);
-  const featured = (data.filter((p) => p.is_featured).length ? data.filter((p) => p.is_featured) : data).slice(0, 4);
+
+  const featured = (
+    data.filter((product) => product.is_featured).length
+      ? data.filter((product) => product.is_featured)
+      : data
+  ).slice(0, 4);
+
   return (
-    <div>
+    <div className="overflow-hidden">
       <SiteHeader />
-      <section className="relative">
-        <img src={hero} alt="Peças artesanais" width={1600} height={1008} className="h-[78vh] w-full object-cover" />
-        <div className="absolute inset-0 flex items-center">
-          <div className="mx-auto w-full max-w-6xl px-6">
-            <div className="ml-auto max-w-md md:mr-8">
-              <p className="eyebrow">Feito à mão</p>
-              <h1 className="mt-4 text-5xl leading-[1.05] md:text-7xl">Encanto em cada detalhe</h1>
-              <p className="mt-6 text-muted-foreground">Peças artesanais pensadas para deixar sua casa — e seus presentes — mais especiais.</p>
-              <Button asChild size="lg" className="mt-8"><Link to="/catalogo">Ver catálogo</Link></Button>
+
+      <main>
+        {/* HERO PRINCIPAL */}
+        <section className="relative flex min-h-[620px] items-center bg-[#EFD4DD] md:min-h-[700px]">
+          <img
+            src={hero}
+            alt="Ambiente delicado da Artes e Encantos"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+          />
+
+          <div className="absolute inset-0 bg-gradient-to-r from-[#F9F1F4]/95 via-[#F9F1F4]/75 to-[#F9F1F4]/20" />
+
+          <div className="relative mx-auto w-full max-w-6xl px-6 py-24">
+            <div className="max-w-xl">
+              <div className="mb-8">
+                <img
+                  src="/images/logo-artes-e-encantos.png"
+                  alt="Artes e Encantos"
+                  className="h-auto w-32 object-contain md:w-40"
+                />
+              </div>
+
+              <p className="eyebrow">Delicadeza em cada criação</p>
+
+              <h1 className="mt-5 text-5xl leading-[1.05] text-[#704820] sm:text-6xl md:text-7xl">
+                Beleza e encanto em cada detalhe.
+              </h1>
+
+              <p className="mt-6 max-w-md text-base leading-7 text-[#704820]/85 md:text-lg">
+                Peças artesanais criadas com cuidado e dedicação para tornar momentos, presentes e
+                ambientes ainda mais especiais.
+              </p>
+
+              <div className="mt-9 flex flex-wrap gap-4">
+                <Button asChild size="lg" className="bg-[#704820] text-white hover:bg-[#573719]">
+                  <Link to="/catalogo">Conheça nossas criações</Link>
+                </Button>
+
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="border-[#704820] bg-white/60 text-[#704820] hover:bg-[#704820] hover:text-white transition-colors"
+                >
+                  <a href="#sobre">Conheça nossa história</a>
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
-        <div className="mb-12 flex items-end justify-between">
-          <div><p className="eyebrow">Seleção</p><h2 className="mt-2 text-4xl">Destaques</h2></div>
-          <Link to="/catalogo" className="text-sm underline-offset-4 hover:underline">Ver tudo</Link>
-        </div>
-        {featured.length === 0 ? (
-          <p className="text-muted-foreground">Novas peças chegando em breve.</p>
-        ) : (
-          <div className="grid grid-cols-2 gap-x-6 gap-y-12 md:grid-cols-4">
-            {featured.map((p) => <ProductCard key={p.id} p={p} />)}
+        {/* APRESENTAÇÃO DA PROPRIETÁRIA */}
+        <section id="sobre" className="bg-[#F9F1F4] scroll-mt-24">
+          <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 md:grid-cols-2 md:gap-20 md:py-28">
+            {/* FOTO DA PROPRIETÁRIA */}
+            <div className="mx-auto w-full max-w-md">
+              <div className="overflow-hidden rounded-sm">
+                <img
+                  src="/images/proprietaria-artes-e-encantos.jpeg"
+                  alt="Proprietária da Artes e Encantos"
+                  className="block h-auto w-full object-contain"
+                />
+              </div>
+            </div>
+
+            {/* TEXTO SOBRE A MARCA */}
+            <div className="py-4">
+              <p className="eyebrow">Por trás da marca</p>
+
+              <h2 className="mt-5 text-4xl leading-tight text-[#704820] md:text-5xl">
+                Muito mais que peças artesanais.
+                <span className="block italic text-[#D88FA8]">Uma história de dedicação.</span>
+              </h2>
+
+              <p className="mt-6 text-base leading-8 text-[#806D72]">
+                A Artes e Encantos nasceu para valorizar a beleza do trabalho artesanal e o cuidado
+                presente em cada criação.
+              </p>
+
+              <p className="mt-4 text-base leading-8 text-[#806D72]">
+                Por trás de cada peça existe dedicação, atenção aos detalhes e o compromisso de
+                oferecer criações especiais para diferentes momentos.
+              </p>
+
+              <p className="mt-4 text-base leading-8 text-[#806D72]">
+                Queremos que cada pessoa encontre aqui algo que represente carinho, beleza e
+                significado.
+              </p>
+            </div>
           </div>
-        )}
-      </section>
+        </section>
 
-      <section className="bg-secondary">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:grid-cols-3">
-          {[
-            ["Artesanal", "Cada peça é feita à mão, única como quem a recebe."],
-            ["Sob medida", "Personalizamos cores e detalhes para a sua ocasião."],
-            ["Pedido fácil", "Monte sua sacola e finalize direto pelo WhatsApp."],
-          ].map(([t, d]) => (
-            <div key={t}><h3 className="text-2xl">{t}</h3><p className="mt-3 text-sm text-muted-foreground">{d}</p></div>
-          ))}
-        </div>
-      </section>
+        {/* ESSÊNCIA DA MARCA */}
+        <section className="bg-white">
+          <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
+            <div className="mx-auto mb-14 max-w-2xl text-center">
+              <p className="eyebrow">Nossa essência</p>
 
-      <section className="mx-auto max-w-2xl px-6 py-24 text-center">
-        <h2 className="text-4xl">Quer algo especial?</h2>
-        <p className="mt-4 text-muted-foreground">Fale com a gente e criamos uma peça só sua.</p>
-        <Button asChild variant="outline" size="lg" className="mt-8">
-          <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer">Conversar no WhatsApp</a>
-        </Button>
-      </section>
+              <h2 className="mt-4 text-4xl text-[#704820] md:text-5xl">
+                O cuidado está em cada detalhe
+              </h2>
+
+              <p className="mt-5 leading-7 text-[#806D72]">
+                Acreditamos que o trabalho artesanal tem um valor especial: cada criação recebe
+                atenção, carinho e dedicação.
+              </p>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-3">
+              {[
+                {
+                  number: "01",
+                  title: "Feito à mão",
+                  description:
+                    "O cuidado artesanal está presente em cada etapa de nossas criações.",
+                },
+                {
+                  number: "02",
+                  title: "Atenção aos detalhes",
+                  description:
+                    "Valorizamos acabamentos, combinações e pequenos detalhes que fazem a diferença.",
+                },
+                {
+                  number: "03",
+                  title: "Feito para encantar",
+                  description:
+                    "Criamos peças pensadas para presentear, decorar e tornar momentos especiais.",
+                },
+              ].map((item) => (
+                <div key={item.number} className="border-t border-[#EFD4DD] px-4 py-7">
+                  <span className="font-display text-3xl text-[#D88FA8]">{item.number}</span>
+
+                  <h3 className="mt-5 text-2xl text-[#704820]">{item.title}</h3>
+
+                  <p className="mt-3 text-sm leading-7 text-[#806D72]">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* PRODUTOS EM DESTAQUE */}
+        <section className="bg-[#EFD4DD]/45">
+          <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
+            <div className="mb-12 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="eyebrow">Escolhas especiais</p>
+
+                <h2 className="mt-3 text-4xl text-[#704820] md:text-5xl">Nossas criações</h2>
+
+                <p className="mt-3 text-sm text-[#806D72]">
+                  Conheça algumas peças selecionadas especialmente para você.
+                </p>
+              </div>
+
+              <Link
+                to="/catalogo"
+                className="text-sm font-semibold text-[#704820] underline underline-offset-4 hover:text-[#D88FA8]"
+              >
+                Ver catálogo completo
+              </Link>
+            </div>
+
+            {featured.length === 0 ? (
+              <div className="rounded-sm bg-white p-10 text-center">
+                <p className="text-[#806D72]">Novas peças chegando em breve.</p>
+
+                <Button asChild className="mt-5">
+                  <Link to="/catalogo">Conhecer catálogo</Link>
+                </Button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-4 md:gap-x-6">
+                {featured.map((product) => (
+                  <ProductCard key={product.id} p={product} />
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* PRESENTES */}
+        <section className="bg-[#F9F1F4]">
+          <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 py-20 md:grid-cols-2 md:py-24">
+            <div>
+              <p className="eyebrow">Momentos especiais</p>
+
+              <h2 className="mt-4 text-4xl leading-tight text-[#704820] md:text-5xl">
+                Pequenos detalhes podem transformar grandes momentos.
+              </h2>
+
+              <p className="mt-5 leading-8 text-[#806D72]">
+                Seja para presentear alguém especial ou escolher algo para você, nossas criações
+                foram pensadas para levar delicadeza e significado a cada ocasião.
+              </p>
+
+              <Button asChild size="lg" className="mt-8 bg-[#D88FA8] text-white hover:bg-[#C77994]">
+                <Link to="/catalogo">Encontrar algo especial</Link>
+              </Button>
+            </div>
+
+            {/* ESPAÇO PARA FUTURA FOTO DE PRODUTOS OU EMBALAGENS */}
+            <div className="flex aspect-[5/4] items-center justify-center overflow-hidden">
+              <img
+                src="/images/foto-produtos.png"
+                alt="Presentes e criações da Artes e Encantos"
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* CHAMADA PARA WHATSAPP */}
+        <section className="bg-[#704820]">
+          <div className="mx-auto max-w-4xl px-6 py-20 text-center md:py-24">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#EFD4DD]">
+              Artes e Encantos
+            </p>
+
+            <h2 className="mt-5 text-4xl leading-tight text-white md:text-5xl">
+              Vamos encontrar algo especial para você?
+            </h2>
+
+            <p className="mx-auto mt-5 max-w-xl leading-7 text-white/80">
+              Conheça nossas criações ou entre em contato para conversar sobre seu pedido.
+            </p>
+
+            <div className="mt-9 flex flex-wrap justify-center gap-4">
+              <Button asChild size="lg" className="bg-[#EFD4DD] text-[#704820] hover:bg-white">
+                <Link to="/catalogo">Explorar catálogo</Link>
+              </Button>
+
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-white bg-transparent text-white transition-colors hover:bg-[#EFD4DD] hover:text-[#704820] hover:border-[#EFD4DD]"
+              >
+                <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer">
+                  Conversar pelo WhatsApp
+                </a>
+              </Button>
+            </div>
+          </div>
+        </section>
+      </main>
+
       <SiteFooter />
     </div>
   );

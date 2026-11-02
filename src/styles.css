@@ -1,3 +1,4 @@
+
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -7,10 +8,12 @@
 @theme inline {
   --font-display: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Karla", system-ui, sans-serif;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -35,42 +38,93 @@
 }
 
 :root {
-  --radius: 0.25rem;
-  --background: oklch(0.975 0.008 80);
-  --foreground: oklch(0.25 0.015 60);
-  --card: oklch(0.99 0.005 80);
-  --card-foreground: oklch(0.25 0.015 60);
-  --popover: oklch(0.99 0.005 80);
-  --popover-foreground: oklch(0.25 0.015 60);
-  --primary: oklch(0.32 0.02 60);
-  --primary-foreground: oklch(0.97 0.01 80);
-  --secondary: oklch(0.93 0.015 75);
-  --secondary-foreground: oklch(0.3 0.02 60);
-  --muted: oklch(0.94 0.012 78);
-  --muted-foreground: oklch(0.5 0.02 60);
-  --accent: oklch(0.68 0.07 60);
-  --accent-foreground: oklch(0.99 0.005 80);
-  --destructive: oklch(0.55 0.18 27);
-  --destructive-foreground: oklch(0.98 0 0);
-  --sale: oklch(0.55 0.12 35);
-  --border: oklch(0.88 0.015 75);
-  --input: oklch(0.88 0.015 75);
-  --ring: oklch(0.68 0.07 60);
+  color-scheme: light;
+
+  --radius: 0.4rem;
+
+  /* Identidade visual Artes e Encantos */
+  --background: #F9F1F4;
+  --foreground: #704820;
+
+  --card: #FFFFFF;
+  --card-foreground: #704820;
+
+  --popover: #FFFFFF;
+  --popover-foreground: #704820;
+
+  --primary: #704820;
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #EFD4DD;
+  --secondary-foreground: #704820;
+
+  --muted: #F3E8EC;
+  --muted-foreground: #806D72;
+
+  --accent: #D88FA8;
+  --accent-foreground: #FFFFFF;
+
+  --destructive: #B42318;
+  --destructive-foreground: #FFFFFF;
+
+  --sale: #D88FA8;
+
+  --border: #E8D7DD;
+  --input: #E8D7DD;
+  --ring: #D88FA8;
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
   }
-  h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.01em; }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background: #EFD4DD;
+    color: #704820;
+  }
 }
 
 @utility eyebrow {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
+  font-weight: 600;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--color-muted-foreground);
+  color: #A16F80;
+}
+
+@utility section-padding {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+@media (max-width: 640px) {
+  .section-padding {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
 }
