@@ -5,7 +5,7 @@ export type Product = Tables<"products">;
 export type Category = Tables<"categories">;
 
 export const STORE_NAME = "Artes e Encantos";
-export const WHATSAPP_NUMBER = "556284769062";
+export const WHATSAPP_NUMBER = "5562984769062";
 
 export const brl = (v: number) =>
   v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });

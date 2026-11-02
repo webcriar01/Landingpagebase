@@ -10,24 +10,85 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "Artes e Encantos | Peças artesanais feitas à mão",
+        title: "Loja de Presentes em Caldas Novas | Artes e Encantos",
       },
       {
         name: "description",
         content:
-          "Conheça a Artes e Encantos. Peças artesanais criadas com cuidado, delicadeza e dedicação. Confira nosso catálogo.",
+          "Encontre presentes, buquês e artesanato em Caldas Novas na Artes e Encantos. Opções personalizadas e peças especiais para presentear.",
+      },
+      {
+        property: "og:type",
+        content: "website",
       },
       {
         property: "og:title",
-        content: "Artes e Encantos | Encanto em cada criação",
+        content: "Artes e Encantos | Presentes em Caldas Novas",
       },
       {
         property: "og:description",
         content:
-          "Peças artesanais feitas com carinho para encantar você e tornar momentos especiais.",
+          "Presentes especiais, buquês e artesanato em Caldas Novas. Conheça a variedade de criações da Artes e Encantos.",
+      },
+      {
+        property: "og:url",
+        content: "https://arteseencantos.com.br/",
+      },
+      {
+        property: "og:image",
+        content: "https://arteseencantos.com.br/images/compartilhamento.png",
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+      {
+        name: "twitter:title",
+        content: "Artes e Encantos | Presentes em Caldas Novas",
+      },
+      {
+        name: "twitter:description",
+        content: "Presentes especiais, buquês e artesanato em Caldas Novas.",
+      },
+      {
+        name: "twitter:image",
+        content: "https://arteseencantos.com.br/images/compartilhamento.png",
+      },
+      {
+        "script:ld+json": {
+          "@context": "https://schema.org",
+          "@type": "Store",
+          name: "Artes e Encantos",
+          url: "https://arteseencantos.com.br/",
+          telephone: "+5562984769062",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress:
+              "Rua Professor Josino Bretas, Qd 28 - Lt 04 - Centro",
+            addressLocality: "Caldas Novas",
+            addressRegion: "GO",
+            postalCode: "75680-059",
+            addressCountry: "BR",
+          },
+          openingHours: [
+            "Mo-Fr 08:00-18:00",
+            "Sa 08:00-17:00",
+          ],
+          areaServed: {
+            "@type": "City",
+            name: "Caldas Novas",
+          },
+        },
+      },
+    ],
+    links: [
+      {
+        rel: "canonical",
+        href: "https://arteseencantos.com.br/",
       },
     ],
   }),
+
   component: Index,
 });
 
@@ -68,12 +129,11 @@ function Index() {
               <p className="eyebrow">Delicadeza em cada criação</p>
 
               <h1 className="mt-5 text-5xl leading-[1.05] text-[#704820] sm:text-6xl md:text-7xl">
-                Beleza e encanto em cada detalhe.
+              Presentes em Caldas Novas para momentos especiais.
               </h1>
 
               <p className="mt-6 max-w-md text-base leading-7 text-[#704820]/85 md:text-lg">
-                Peças artesanais criadas com cuidado e dedicação para tornar momentos, presentes e
-                ambientes ainda mais especiais.
+              Encontre presentes especiais, buquês e artesanato em Caldas Novas. Criações feitas com carinho para surpreender pessoas especiais e tornar cada ocasião inesquecível.
               </p>
 
               <div className="mt-9 flex flex-wrap gap-4">
@@ -118,13 +178,11 @@ function Index() {
               </h2>
 
               <p className="mt-6 text-base leading-8 text-[#806D72]">
-                A Artes e Encantos nasceu para valorizar a beleza do trabalho artesanal e o cuidado
-                presente em cada criação.
+              A Artes e Encantos é uma loja de presentes em Caldas Novas, onde você encontra buquês, artesanato e opções especiais para surpreender em diferentes ocasiões.
               </p>
 
               <p className="mt-4 text-base leading-8 text-[#806D72]">
-                Por trás de cada peça existe dedicação, atenção aos detalhes e o compromisso de
-                oferecer criações especiais para diferentes momentos.
+              Valorizamos o trabalho artesanal, os detalhes feitos à mão e a variedade de produtos que tornam cada presente único e cheio de significado.
               </p>
 
               <p className="mt-4 text-base leading-8 text-[#806D72]">
@@ -235,8 +293,7 @@ function Index() {
               </h2>
 
               <p className="mt-5 leading-8 text-[#806D72]">
-                Seja para presentear alguém especial ou escolher algo para você, nossas criações
-                foram pensadas para levar delicadeza e significado a cada ocasião.
+              Na Artes e Encantos, você encontra presentes em Caldas Novas, buquês e peças de artesanato para aniversários, datas comemorativas e outros momentos especiais. São opções para demonstrar carinho e tornar cada ocasião ainda mais significativa.
               </p>
 
               <Button asChild size="lg" className="mt-8 bg-[#D88FA8] text-white hover:bg-[#C77994]">
