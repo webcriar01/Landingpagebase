@@ -70,7 +70,7 @@ export function ProductCard({ p }: { p: Product }) {
   return (
     <>
       <div className="group">
-        <div className="relative aspect-[4/5] overflow-hidden bg-muted">
+        <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-muted">
           {images.length > 0 ? (
             <>
               <button
